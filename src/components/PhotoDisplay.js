@@ -13,65 +13,69 @@ import image from "./asset/13824bb1d54370aa191ace2385809594.gif";
 
 // Use the styled utility to create a styled component
 const ProgressContainer = styled("div")({
-  padding: "16px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  color: "white",
-  backgroundColor: "black",
-});
+    padding: "16px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    color: "white",
+    backgroundColor: "black", // Dark blue background color
+  });
+  
+  const ProgressBox = styled(Paper)({
+    marginBottom: "16px",
+    padding: "12px",
+    borderRadius: "8px",
+    backgroundColor:"black",// Slightly lighter blue background color
+    color: "white",
+    display: "flex",
+    alignItems: "center",
+  });
+  
+  const Progress = styled(LinearProgress)({
+    flex: 1,
+    marginLeft: "8px",
+    backgroundColor: "#1a237e", // Darker blue progress bar color
+    borderRadius: "4px",
+  });
+  
+  const Overlay = styled("div")({
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "white",
+    textAlign: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+ 
+  });
+  
+  const PhotoContainer = styled("div")({
+    position: "relative",
+    width: "100%",
+    paddingTop: "75%",
+    backgroundColor: "#1a237e", // Dark blue background color
+  });
+  
+  const ShufflingPhoto = styled("img")({
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    animation: "shuffleAnimation 0.5s infinite alternate",
+    borderRadius: "8px", // Add border radius to the photo
+  });
+  const ArrowIcon = styled(ArrowForwardIcon)({
+    marginRight: "8px",
+    color: "white",
+  });
 
-const ProgressBox = styled(Paper)({
-  marginBottom: "16px",
-  padding: "12px",
-  borderRadius: "8px",
-  backgroundColor: "black",
-  color: "white",
-  display: "flex",
-  alignItems: "center",
-});
-
-const Progress = styled(LinearProgress)({
-  flex: 1,
-  marginLeft: "8px",
-});
-
-const ArrowIcon = styled(ArrowForwardIcon)({
-  fontSize: "20px",
-});
-
-const PhotoContainer = styled("div")({
-  position: "relative",
-  width: "100%",
-
-  paddingTop: "75%",
-  backgroundColor: "#282c34",
-});
-
-const ShufflingPhoto = styled("img")({
-  position: "absolute",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-  animation: "shuffleAnimation 0.5s infinite alternate",
-});
-
-const Overlay = styled("div")({
-  position: "absolute",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100%",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  color: "white",
-  textAlign: "center",
-  backgroundColor: "rgba(0, 0, 0, 0.7)",
-});
 
 const PhotoDisplay = () => {
   const [photos, setPhotos] = useState([]);
@@ -160,7 +164,9 @@ const PhotoDisplay = () => {
             <Typography variant="body1">
               Model is processing images to create a 3D view...
             </Typography>
+       
           </Overlay>
+
         </PhotoContainer>
       </Grid>
       <Grid item xs={4}>
@@ -176,7 +182,13 @@ const PhotoDisplay = () => {
                 <Progress variant="determinate" value={progress} />
               </ProgressBox>
             ))}
-            <img src={image} alt="connecting-nodes-gif" />
+            {logs.length === 0 && (
+              <Typography variant="body1">
+                Waiting for server to start...
+              </Typography>
+            )
+            }
+           {logs.length===buildSteps.length && <img src={image} alt="gif" />}
           </ProgressContainer>
         </Paper>
       </Grid>
