@@ -152,48 +152,51 @@ const PhotoDisplay = () => {
 
   return (
     <Grid container spacing={2} className="photo-display-container">
-      <Grid item xs={8}>
-        <PhotoContainer>
-          <ShufflingPhoto
-            key={currentPhotoIndex}
-            src={photos[currentPhotoIndex]}
-            alt="shuffling"
-          />
-          <Overlay>
-            <CircularProgress />
-            <Typography variant="body1">
-              Model is processing images to create a 3D view...
-            </Typography>
-       
-          </Overlay>
-
-        </PhotoContainer>
-      </Grid>
-      <Grid item xs={4}>
-        <Paper>
-          <ProgressContainer>
-            <Typography variant="h6" style={{ marginBottom: "16px" }}>
-              Development Dashboard
-            </Typography>
-            {logs.map((log, index) => (
-              <ProgressBox key={index}>
-                <ArrowIcon />
-                <Typography variant="h5">{buildSteps[index]}</Typography>
-                <Progress variant="determinate" value={progress} />
-              </ProgressBox>
-            ))}
-            {logs.length === 0 && (
-              <Typography variant="body1">
-                Waiting for server to start...
-              </Typography>
-            )
-            }
-           {logs.length===buildSteps.length && <img src={image} alt="gif" />}
-          </ProgressContainer>
-        </Paper>
-      </Grid>
+    <Grid item xs={12} md={8}>
+      <PhotoContainer>
+        <ShufflingPhoto
+          key={currentPhotoIndex}
+          src={photos[currentPhotoIndex]}
+          alt="shuffling"
+        />
+        <Overlay>
+          <CircularProgress />
+          <Typography variant="body1">
+            Model is processing images to create a 3D view...
+          </Typography>
+        </Overlay>
+      </PhotoContainer>
     </Grid>
-  );
+    <Grid item xs={12} md={4}>
+      <Paper>
+        <ProgressContainer>
+          <Typography variant="h6" style={{ marginBottom: "16px" }}>
+            Development Dashboard
+          </Typography>
+          {logs.map((log, index) => (
+            <ProgressBox key={index}>
+              <ArrowIcon />
+              <Typography variant="h5">{buildSteps[index]}</Typography>
+              <Progress variant="determinate" value={progress} />
+            </ProgressBox>
+          ))}
+          {logs.length === 0 && (
+            <Typography variant="body1">
+              Waiting for server to start...
+            </Typography>
+          )}
+          {logs.length === buildSteps.length && (
+            <img
+              src={image}
+              alt="gif"
+              style={{ width: "100%", borderRadius: "8px" }}
+            />
+          )}
+        </ProgressContainer>
+      </Paper>
+    </Grid>
+  </Grid>
+);
 };
 
 export default PhotoDisplay;
