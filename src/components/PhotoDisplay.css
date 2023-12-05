@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 50%;
   }
   
   .photo-container {
@@ -13,7 +13,7 @@
   
   .shuffling-photo {
     max-width: 100%;
-    animation: shuffleAnimation 0.2s infinite alternate;
+    animation: shuffleAnimation 0.5s infinite alternate;
   }
   
   .processing-overlay {

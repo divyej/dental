@@ -1,0 +1,6 @@
+@keyframes pointCloudAnimation {
+    to {
+      transform: translateY(5px);
+    }
+  }
+  

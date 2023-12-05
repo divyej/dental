@@ -1,20 +1,21 @@
-// src/App.js
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PhotoDisplay from './components/PhotoDisplay';
 
+// Create a dark/black theme
+const theme = createTheme({
+  palette: {
+    type: 'dark',
+  },
+});
+
 const App = () => {
-  
-
-  
-
-
   return (
-    <div>
-        <div>
-          <h1>Photos Processing </h1>
-          <PhotoDisplay />
-        </div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div style={{ backgroundColor: 'black', minHeight: '100vh' }}>
+        <PhotoDisplay />
+      </div>
+    </ThemeProvider>
   );
 };
 
